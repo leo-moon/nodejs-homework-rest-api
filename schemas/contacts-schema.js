@@ -11,6 +11,7 @@ const addSchema = Joi.object({
   phone: Joi.string().required().messages({
     "any.required": `"phone" is required `,
   }),
+  // favorite: Joi.string(),
 });
 
 module.exports = { addSchema };
