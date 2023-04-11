@@ -11,4 +11,7 @@ const router = express.Router();
 // auth, signup
 router.post("/register", validateBody(schemas.registreSchema), cntr.register);
 
+// signin
+router.post("/login", validateBody(schemas.loginSchema), cntr.login);
+
 module.exports = router;
