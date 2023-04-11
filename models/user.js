@@ -5,9 +5,9 @@ const Joi = require("joi");
 
 const handleMongooseError = require("../utils/handleMongooseError");
 
-// const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-const passMinLength = 6;
+// const emailRegexp = "/^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/";
+const passMinLength = 4;
 
 const userSchema = new Schema(
   {
@@ -17,9 +17,9 @@ const userSchema = new Schema(
     },
     email: {
       type: String,
-      match: emailRegexp,
-      unque: true,
+      unique: true,
       require: true,
+      match: emailRegexp,
     },
     password: {
       type: String,
