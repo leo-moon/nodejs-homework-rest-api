@@ -4,6 +4,7 @@ const { cntrWrapper } = require("../utils");
 const { Contact } = require("../models/contact");
 
 const getAllContacts = async (req, res) => {
+  // const 
   const result = await Contact.find();
   console.log(result);
   res.json(result);
