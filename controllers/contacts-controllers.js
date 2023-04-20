@@ -23,8 +23,6 @@ const getAllContacts = async (req, res) => {
     console.log(result);
     res.json(result);
   }
-  // console.log(result);
-  // res.json(result);
 };
 
 const getContact = async (req, res, next) => {

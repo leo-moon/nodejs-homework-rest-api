@@ -29,8 +29,6 @@ const contactSchema = new Schema({
 
 contactSchema.post("save", handleMongooseError);
 
-// const { HttpError } = require("../../helpers");
-
 const addSchema = Joi.object({
   name: Joi.string().required().messages({
     "any.required": `"name" is required `,
