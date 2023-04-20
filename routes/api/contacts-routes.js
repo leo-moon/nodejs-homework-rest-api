@@ -10,7 +10,12 @@ router.get("/", authenticate, cntr.getAllContacts);
 
 router.get("/:contactId", authenticate, cntr.getContact);
 
-router.post("/", validateBody(schemas.addSchema), cntr.addContact);
+router.post(
+  "/",
+  authenticate,
+  validateBody(schemas.addSchema),
+  cntr.addContact
+);
 
 router.put(
   "/:id",
