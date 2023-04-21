@@ -4,9 +4,25 @@ const { cntrWrapper } = require("../utils");
 const { Contact } = require("../models/contact");
 
 const getAllContacts = async (req, res) => {
-  const result = await Contact.find();
-  console.log(result);
-  res.json(result);
+  const { _id: owner } = req.user;
+  const { page = 1, limit = 20, favorite = null } = req.query;
+  const skip = (page - 1) * limit;
+
+  if (favorite !== null) {
+    const result = await Contact.find(
+      { owner, favorite },
+      " -createdAt -updatedAt",
+      { skip, limit }
+    ).populate("owner", "name email");
+    res.json(result);
+  } else {
+    const result = await Contact.find({ owner }, " -createdAt -updatedAt", {
+      skip,
+      limit,
+    }).populate("owner", "name email");
+    console.log(result);
+    res.json(result);
+  }
 };
 
 const getContact = async (req, res, next) => {
@@ -21,7 +37,8 @@ const getContact = async (req, res, next) => {
 };
 
 const addContact = async (req, res) => {
-  const result = await Contact.create(req.body);
+  const { _id: owner } = req.user;
+  const result = await Contact.create({ ...req.body, owner });
   res.status(201).json(result);
 };
 

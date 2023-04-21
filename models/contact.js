@@ -20,11 +20,14 @@ const contactSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: "user",
+    require: true,
+  },
 });
 
 contactSchema.post("save", handleMongooseError);
-
-// const { HttpError } = require("../../helpers");
 
 const addSchema = Joi.object({
   name: Joi.string().required().messages({
