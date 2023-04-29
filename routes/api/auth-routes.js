@@ -19,6 +19,10 @@ router.get("/current", authenticate, cntr.getCurrent);
 
 router.post("/logout", authenticate, cntr.logout);
 
+router.get("/verify/:verificationToken", cntr.verify);
+
+router.post("/users/verify",  cntr.reverify);
+// validateBody(schemas.emailSchema),
 router.patch("/users", authenticate, cntr.subscriptionChange);
 
 router.patch(
